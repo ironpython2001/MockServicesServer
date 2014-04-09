@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ExternalDlls\FiddlerCore4.dll" />
+    <Content Include="MockServices.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
