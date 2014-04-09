@@ -49,6 +49,10 @@ namespace MockServices.Server
 
         static void FiddlerApplication_BeforeResponse(Session oSession)
         {
+            //Assembly MyDALL = Assembly.LoadFrom(assemblyName + ".dll");
+            //Type MyLoadClass = MyDALL.GetType(className);
+            //IExecuteTask myCode = (IExecuteTask)Activator.CreateInstance(MyLoadClass);
+
             oSession.utilSetResponseBody("asdfasdF");
             Console.WriteLine(oSession.GetResponseBodyAsString());
 

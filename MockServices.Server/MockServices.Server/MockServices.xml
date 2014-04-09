@@ -31,8 +31,9 @@
 
     <Response HandlerType="FromAssembly">
         <Handler>
-          <Assembly Name="" Directory=""></Assembly>
-          
+          <Directory Name="directoryname">
+              <Assembly Name="" ClassName="" />
+          </Directory>
         </Handler>
     </Response>
 
