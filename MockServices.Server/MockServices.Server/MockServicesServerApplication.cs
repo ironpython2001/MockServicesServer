@@ -28,7 +28,7 @@ namespace MockServices.Server
         public void Start(int portNo)
         {
             FiddlerApplication.Startup(portNo, FiddlerCoreStartupFlags.Default);
-            Console.WriteLine("Started Server..");
+            Console.WriteLine("Started Server at Port No.. " + portNo.ToString() );
 
         }
 
