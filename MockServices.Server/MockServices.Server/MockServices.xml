@@ -2,42 +2,23 @@
 
 <MockServices>
   
-  <!--
-  Scenario-1 : Serve a static file for a given URL
-  -->
+  
   <MockService>
-    
-    <Request Url="http://staticurl.com">
+
+    <!--
+    Scenario-1 : Serve a static file for a given URL
+    -->
+    <Request Url="http://staticurl.com" ResponseHandlerFileName="Scenario1.xml">
     </Request>
-    
-    <Response HandlerType="Static">
-        <Handler>
-          <Directory Name="directoryname">
-            <File Name="one.xml"/>
-          </Directory> 
-        </Handler>
-    </Response>
-    
-  </MockService>
 
-
-  <!--
+    <!--
   Scenario-2 : Modify the response from a URL and serve the content
   -->
-  <MockService>
-
-    <Request Url="http://modifyresponsefromurl.com">
+    <Request Url="http://modifyresponsefromurl.com" ResponseHandlerFileName="Scenario2.xml">
     </Request>
 
-    <Response HandlerType="FromAssembly">
-        <Handler>
-          <Directory Name="directoryname">
-              <Assembly Name="" ClassName="" />
-          </Directory>
-        </Handler>
-    </Response>
 
   </MockService>
-  
+
   
 </MockServices>

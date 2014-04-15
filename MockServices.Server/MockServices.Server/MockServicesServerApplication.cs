@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Fiddler;
+using System.Xml.Linq;
 
 namespace MockServices.Server
 {
-    public interface IMockServicesServerApplication
-    {
-
-        void Start(int portNo);
-
-        void Shutdown();
-
-    }
+    
 
     public class MockServicesServerApplication:IMockServicesServerApplication
     {
@@ -52,6 +46,15 @@ namespace MockServices.Server
             //Assembly MyDALL = Assembly.LoadFrom(assemblyName + ".dll");
             //Type MyLoadClass = MyDALL.GetType(className);
             //IExecuteTask myCode = (IExecuteTask)Activator.CreateInstance(MyLoadClass);
+            //XDocument xdoc = XDocument.Load("MockServices.xml");
+
+            
+
+
+            
+            
+            
+
 
             oSession.utilSetResponseBody("asdfasdF");
             Console.WriteLine(oSession.GetResponseBodyAsString());

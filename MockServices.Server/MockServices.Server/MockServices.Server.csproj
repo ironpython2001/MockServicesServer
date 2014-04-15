@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionsMethods.cs" />
+    <Compile Include="IMockServicesServerApplication.cs" />
     <Compile Include="IMockServicesServerSettings.cs" />
     <Compile Include="MockServicesServerApplication.cs" />
     <Compile Include="MockServicesServerSettings.cs" />
@@ -58,6 +60,12 @@
     <Content Include="ExternalDlls\FiddlerCore4.dll" />
     <Content Include="MockServices.xml">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scenario1.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scenario2.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
