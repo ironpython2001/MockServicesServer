@@ -7,7 +7,6 @@ using System.Xml.Linq;
 
 namespace MockServices.Server
 {
-    
 
     public class MockServicesServerApplication:IMockServicesServerApplication
     {
