@@ -17,8 +17,10 @@
   Scenario-2 : Modify the response from a URL and serve the content
   -->
 
-  <Handler Name="Scenario1" Description="" RequestUrl="http://modifyresponsefromurl.com">
-    <Response HandlerType="FromAssembly"  FileName="AssemblyName,ClassName" />
+  <!--<Handler Name="Scenario1" Description="" RequestUrl="http://modifyresponsefromurl.com">
+    <Response HandlerType="FromAssembly"  FileName="AssemblyName,ClassName" />-->
+  <Handler Name="Scenario2" Description="" RequestUrl="www.codeproject.com">
+    <Response HandlerType="FromAssembly"  FileName="MockServices.Server.Scenario2Test,MockServices.Server.Scenario2Test.CodeProjectBlocker" />
   </Handler>
 
 </Handlers>
