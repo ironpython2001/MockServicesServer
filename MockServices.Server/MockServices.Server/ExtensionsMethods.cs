@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using System.Reflection;
+using System.IO;
 using Fiddler;
+using MockServices.Contracts;
 
 namespace MockServices.Server
 {
@@ -12,52 +15,53 @@ namespace MockServices.Server
 
         public static string utilGetResponseBodyFromHandler(this Session oSession)
         {
-            var responseHandlerFileName = string.Empty;
 
-            #region Get Handler File Name
-            {
-                XDocument xdoc = XDocument.Load(@"MockServices.xml");
-                var request = (from r in xdoc.Descendants("Request")
-                               where r.Attribute("Url").Value == oSession.fullUrl
-                               select new
-                               {
-                                   Url = r.Attribute("Url").Value,
-                                   FileName = r.Attribute("ResponseHandlerFileName").Value
-                               }).FirstOrDefault();
+            #region Get Handler Related Information
+            XDocument xdoc = XDocument.Load(@"MockServices.xml");
+            var Handler = (from h in xdoc.Descendants("Handler")
+                           where h.Attribute("RequestUrl").Value == oSession.fullUrl
+                           select new
+                           {
+                               Name = h.Attribute("Name").Value,
+                               Description = h.Attribute("Description").Value,
+                               RequestUrl = h.Attribute("RequestUrl").Value,
+                               HandlerType = (from r in h.Descendants("Response")
+                                              select r.Attribute("HandlerType").Value).FirstOrDefault(),
+                               FileName = (from r in h.Descendants("Response")
+                                           select r.Attribute("FileName").Value).FirstOrDefault(),
 
-                if (request == null)
-                {
-                    //nothing to do
-                }
-                else
-                {
-                    responseHandlerFileName = request.FileName;
-                }
-            }
+                           }).FirstOrDefault(); 
             #endregion
 
             string responseBody = string.Empty;
 
-
-
-            #region Read Response Handler File
+            if (Handler == null)
             {
-                //XDocument xdoc = XDocument.Load(@responseHandlerFileName);
-                //var request = (from r in xdoc.Descendants("Response")
-                //               where r.Attribute("Url").Value == oSession.fullUrl
-                //               select new
-                //               {
-                //                   Url = r.Attribute("Url").Value,
-                //                   FileName = r.Attribute("ResponseHandlerFileName").Value
-                //               }).FirstOrDefault();
-                
+                //nothing to do
             }
-            #endregion
+            else
+            {
+                switch (Handler.HandlerType)
+                {
+                    case "Static":
+                        responseBody = File.ReadAllText(Handler.FileName);
+                        break;
+                    case "FromAssembly":
 
+                        var assemblyName = Handler.FileName.Split(',')[0].ToString();
+                        var className = Handler.FileName.Split(',')[1].ToString();
 
+                        Assembly MyDALL = Assembly.LoadFrom(assemblyName + ".dll");
+                        Type MyLoadClass = MyDALL.GetType(className);
+                        IMockService myCode = (IMockService)Activator.CreateInstance(MyLoadClass);
+                        responseBody =  myCode.Run();
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             return responseBody;
-
 
         }
 

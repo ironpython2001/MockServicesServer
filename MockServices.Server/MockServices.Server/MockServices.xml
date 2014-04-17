@@ -1,24 +1,30 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
-<MockServices>
-  
-  
-  <MockService>
 
-    <!--
+
+
+<Handlers>
+
+  <!--
     Scenario-1 : Serve a static file for a given URL
     -->
-    <Request Url="http://staticurl.com" ResponseHandlerFileName="Scenario1.xml">
-    </Request>
 
-    <!--
+  <Handler Name="Scenario1" Description="" RequestUrl="http://staticurl.com">
+    <Response HandlerType="Static"  FileName="one.xml" />
+  </Handler>
+
+  <!--
   Scenario-2 : Modify the response from a URL and serve the content
   -->
-    <Request Url="http://modifyresponsefromurl.com" ResponseHandlerFileName="Scenario2.xml">
-    </Request>
+
+  <Handler Name="Scenario1" Description="" RequestUrl="http://modifyresponsefromurl.com">
+    <Response HandlerType="FromAssembly"  FileName="AssemblyName,ClassName" />
+  </Handler>
+
+</Handlers>
 
 
-  </MockService>
 
-  
-</MockServices>
+
+
+

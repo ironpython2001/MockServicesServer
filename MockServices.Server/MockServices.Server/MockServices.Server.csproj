@@ -72,6 +72,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MockServices.Contracts\MockServices.Contracts.csproj">
+      <Project>{53D83940-FA64-4D68-9E3E-EDC1D0938C01}</Project>
+      <Name>MockServices.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -7,7 +7,7 @@ namespace MockServices.Contracts
 {
     public interface IMockService
     {
-
+        string Run();
         
 
     }
